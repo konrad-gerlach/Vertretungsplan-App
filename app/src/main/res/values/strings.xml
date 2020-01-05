@@ -1,0 +1,365 @@
+<!--
+  ~ Copyright 2019 Konrad Gerlach
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="app_name">Vertretungsplan-App</string>
+    <string-array name="Theme_Array">
+        <item>Blau</item>
+        <item>Grün</item>
+        <item>Rot</item>
+        <item>Gelb</item>
+        <item>Grau</item>
+    </string-array>
+    <string name="Teacherabbrexplanation">
+        Gib das Kürzel des Lehrers und den Namen ein, damit er im Vertretungsplan anstelle des Kürzels erscheint.
+    </string>
+    <string name="EULA">
+         Die Vertretungsplan-App wird Ihnen unter der Apache License, Version 2.0, (Apache Lizenz, Version 2.0) zur Verfügung gestellt.
+Dies sind die Allgemeinen Geschäftsbedingungen für die Vertretungsplan-App:
+        Copyright 2019 Konrad Gerlach\n
+\n
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at\n
+\n
+    http://www.apache.org/licenses/LICENSE-2.0\n
+\n
+        Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.\n
+\n
+                                 Apache License\n
+                           Version 2.0, January 2004\n
+                        http://www.apache.org/licenses/\n
+\n
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n
+\n
+   1. Definitions.\n
+\n
+      "License" shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.\n
+\n
+      "Licensor" shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.\n
+\n
+      "Legal Entity" shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      "control" means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.\n
+\n
+      "You" (or "Your") shall mean an individual or Legal Entity
+      exercising permissions granted by this License.\n
+
+      "Source" form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.\n
+\n
+      "Object" form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.\n
+\n
+      "Work" shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).\n
+\n
+      "Derivative Works" shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,\n
+      the Work and Derivative Works thereof.\n
+\n
+      "Contribution" shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, "submitted"
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as "Not a Contribution."\n
+\n
+      "Contributor" shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.\n
+\n
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.\n
+\n
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.\n
+\n
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:\n
+\n
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and\n
+\n
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and\n
+\n
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and\n
+\n
+      (d) If the Work includes a "NOTICE" text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.\n
+\n
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.\n
+\n
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.\n
+\n
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.\n
+\n
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.\n
+\n
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.\n
+\n
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.\n
+\n
+   END OF TERMS AND CONDITIONS\n
+\n
+   APPENDIX: How to apply the Apache License to your work.\n
+\n
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets "[]"
+      replaced with your own identifying information. (Don\'t include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same "printed page" as the copyright notice for easier
+      identification within third-party archives.\n
+\n
+   Copyright [yyyy] [name of copyright owner]\n
+\n
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at\n
+\n
+       http://www.apache.org/licenses/LICENSE-2.0\n
+\n
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.\n
+    </string>
+
+
+
+
+
+
+
+
+    <string name="Privacy_policy">
+Datenschutzerklärung (Stand 27.10.2019)\n
+\n
+Grundlegendes\n
+\n
+Diese Datenschutzerklärung soll die Nutzer dieser App über die Art, den Umfang und den Zweck der Erhebung und Verwendung personenbezogener Daten durch den App-Betreiber Konrad Gerlach (konrad.gerlach_dev@gmx.de) informieren.\n
+\n
+Der App-Betreiber nimmt Ihren Datenschutz sehr ernst und behandelt Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Vorschriften.
+Auf Änderungen an dieser Datenschutzerklärung werden Sie hingewiesen.
+Es kann notwendig sein, diese Annahme dieser Änderungen zunächst zu bestätigen, bevor Sie diese App weiter verwenden können.
+Bei lediglich redaktionellen Änderungen werden die Änderungen sofort gültig.\n
+\n
+Definitionen der verwendeten Begriffe (z.B. “personenbezogene Daten” oder “Verarbeitung”) finden Sie in Art. 4 DSGVO.\n
+\n
+Diese Datenschutzerklärung gilt nicht für Dienste, die von anderen Unternehmen, Institutionen oder Personen angeboten werden, einschließlich Produkten oder Websites, deren Inhalte in der App verfügbar sein können.\n
+\n
+Nutzverhalten\n
+\n
+Wir, der App-Betreiber bzw. App-Entwickler, erheben aufgrund unseres berechtigten Interesses (s. Art. 6 Abs. 1 lit. f. DSGVO) Daten über Zugriffe auf die App und speichern diese als App-Logfile („VPLLog“) auf ihrem Gerät ab. Folgende Daten werden so protokolliert:\n
+\n
+•	Nutzverhalten der App und Systemaktivitäten\n
+•	die Webseiten, auf die die App zugreift\n
+•	Datum und Uhrzeit zum Zeitpunkt des Eintrags\n
+•	Informationen zum Betriebssystem\n
+• 	Informationen über entstandene Fehler, Absturzberichte und ähnliches\n
+\n
+Erfassung und Verarbeitung personenbezogener Daten\n
+\n
+Der App-Betreiber erhebt, nutzt und gibt Ihre personenbezogenen Daten nur dann weiter, wenn dies im gesetzlichen Rahmen erlaubt ist oder Sie in die Datenerhebung einwilligen.
+Als personenbezogene Daten gelten sämtliche Informationen, welche dazu dienen, Ihre Person zu bestimmen und welche zu Ihnen zurückverfolgt werden können – also beispielsweise Ihr Name, Ihre E-Mail-Adresse und Telefonnummer.\n
+\n
+Diese App können Sie auch verwenden, ohne Angaben zu Ihrer Person zu machen.
+Zur Verbesserung unseres App-Angebotes speichern wir jedoch Ihre Nutzungsdaten auf ihrem Gerät.
+Der App-Betreiber erhält die auf ihrem Gerät gesammelten Daten nur mit Ihrem Einverständnis und nicht automatisiert.\n
+\n
+•	Welche? - Wir verarbeiten personenbezogene Daten wie Vorname, Nachname, E-Mail-Adresse und Inhaltsangaben und unter Umständen andere, von ihnen zusätzlich, freiwillig spezifizierte Angaben, falls Sie mit uns Kontakt aufnehmen.\n
+•	Wie? - Wir verarbeiten personenbezogene Daten nur nach ausdrücklicher Erlaubnis der betreffenden Nutzer und unter Einhaltung der geltenden Datenschutzbestimmungen.\n
+•	Warum? - Die Verarbeitung der personenbezogenen Daten erfolgt aufgrund unseres berechtigten Interesses zur Erfüllung unserer vertraglich vereinbarten Leistungen und zur Optimierung unseres App-Angebotes.\n
+\n
+Umgang mit Kontaktdaten\n
+\n
+Nehmen Sie mit uns als App-Betreiber durch die angebotenen Kontaktmöglichkeiten Verbindung auf, werden Ihre Angaben gespeichert, damit auf diese zur Bearbeitung und Beantwortung Ihrer Anfrage zurückgegriffen werden kann. Ohne Ihre Einwilligung werden diese Daten nicht an Dritte weitergegeben.\n
+\n
+Verwendung personenbezogener Daten\n
+\n
+Wir verwenden Ihre Daten, um zu gewährleisten, dass unsere Dienste ordnungsgemäß funktionieren.
+Beispielsweise verwenden wir sie zur Überprüfung von Störungen oder zur Beseitigung von Problemen, die Sie uns gemeldet haben.
+Außerdem nutzen wir Ihre Daten, um unsere Dienste zu verbessern.\n
+\n
+Weitergabe an Dritte\n
+\n
+Die Weitergabe an Dritte erfolgt nur in diesen Fällen:\n
+\n
+	•	Sie verwenden die App um sich bei einem Dienst Dritter anzumelden. Dies wird in der vorgesehenen Nutzung der App erforderlich sein. In diesem Falle werden nicht-personalisierte Anmeldedaten an den Dienst weitergegeben. Für die Nutzung des Dienstes gilt diese Datenschutzerklärung nicht. Ihr Verhältnis zum Dienst wird durch die AGB (Allgemeinen Geschäftsbedingungen) und die Datenschutzerklärung des Dienstes bestimmt. Die App ist darauf ausgelegt die Anmeldedaten für den Dienst an die Dienst weiterzugeben.\n
+\n
+	•	Wir geben personenbezogene Daten an Stellen außerhalb des App-Betreibers weiter, wenn wir nach Treu und Glauben davon ausgehen dürfen, dass der Zugriff auf diese Daten oder ihre Nutzung, Aufbewahrung oder Offenlegung vernünftigerweise notwendig ist, um folgende Zwecke zu erfüllen:\n
+\n
+		•	Geltende Gesetze, Vorschriften oder gerichtliche Verfahren einzuhalten oder einer vollstreckbaren behördlichen Anordnung nachzukommen.\n
+		•	Geltende Nutzungsbedingungen durchzusetzen, einschließlich der Untersuchung möglicher Verstöße.\n
+		•	Betrug, Sicherheitsmängel oder technische Probleme aufzudecken, zu verhindern oder anderweitig zu bekämpfen.\n
+		•	Die Rechte, das Eigentum oder die Sicherheit des App-Betreibers, unserer Nutzer oder der Öffentlichkeit vor Schaden zu schützen, soweit gesetzlich zulässig oder erforderlich.\n
+\n
+Rechte des Nutzers\n
+\n
+Sie haben als Nutzer das Recht, auf Antrag eine Auskunft darüber zu erhalten, welche personenbezogenen Daten über Sie gespeichert wurden. Sie haben außerdem das Recht auf Berichtigung falscher Daten und auf die Verarbeitungseinschränkung oder Löschung Ihrer personenbezogenen Daten. Bitte beachten Sie, dass dies Funktionseinschränkungen oder gar eine Funktionsunfähigkeit der App zur Folge haben kann. Falls zutreffend, können Sie auch Ihr Recht auf Datenportabilität geltend machen. Sollten Sie annehmen, dass Ihre Daten unrechtmäßig verarbeitet wurden, können Sie eine Beschwerde bei der zuständigen Aufsichtsbehörde einreichen.\n
+\n
+Löschung von Daten\n
+\n
+Sofern Ihr Wunsch nicht mit einer gesetzlichen Pflicht zur Aufbewahrung von Daten (z. B. Vorratsdatenspeicherung) kollidiert, haben Sie ein Anrecht auf Löschung Ihrer Daten. Von uns gespeicherte Daten werden, sollten sie für ihre Zweckbestimmung nicht mehr vonnöten sein und es keine gesetzlichen Aufbewahrungsfristen geben, gelöscht. Falls eine Löschung nicht durchgeführt werden kann, da die Daten für zulässige gesetzliche Zwecke erforderlich sind, erfolgt eine Einschränkung der Datenverarbeitung. In diesem Fall werden die Daten gesperrt und nicht für andere Zwecke verarbeitet.\n
+\n
+Widerspruchsrecht\n
+\n
+Nutzer dieser App können von ihrem Widerspruchsrecht Gebrauch machen und der Verarbeitung ihrer personenbezogenen Daten zu jeder Zeit widersprechen. Bitte beachten Sie, dass dies Funktionseinschränkungen oder gar eine Funktionsunfähigkeit der App zur Folge haben kann.\n
+\n
+Wenn Sie eine Berichtigung, Sperrung, Löschung oder Auskunft über die zu Ihrer Person gespeicherten personenbezogenen Daten wünschen oder Fragen bzgl. der Erhebung, Verarbeitung oder Verwendung Ihrer personenbezogenen Daten haben oder erteilte Einwilligungen widerrufen möchten, wenden Sie sich bitte an folgende E-Mail-Adresse: konrad.gerlach_dev@gmx.de\n
+\n
+Salvatorische Klausel\n
+
+Sollten einzelne Teile dieser Erklärung nichtig oder unwirksam sein, so ist nicht die gesamte Erklärung nichtig oder unwirksam, sondern nur die zu beanstandenden Teile. Diese sollen durch eine wirksame und gültige Formulierung ersetzt werden, die dem ursprünglichen Geist der zu beanstandenden Teile nahe kommt.\n</string>
+    <string name="EULAandPrivacyPolicyButton">Weiter</string>
+    <string name="EULAorPrivacyPolicyToast">Um Fortzufahren müssen Sie den Bedingungen der Apache License, Version 2.0, und der Datenschutzerklärung des Entwicklers zustimmen. Außerdem müssen Sie mindestens 13 Jahre alt sein.</string>
+    <string name="EULACheckBoxText">Ich habe die <a href="https://vertretungsplanapp.jimdofree.com/allgemeine-gesch%C3%A4ftsbedingungen/">Allgemeinen Geschäftsbedingungen (AGB)</a> des Entwicklers gelesen und stimme ihren Bedingungen zu.</string>
+    <string name="PrivacyPolicyCheckBoxText">Ich habe die <a href="https://vertretungsplanapp.jimdofree.com/datenschutzerkl%C3%A4rung/">Datenschutzerklärung des Entwicklers</a> gelesen und stimme ihren Bedingungen zu.</string>
+    <string name="AgeCheckBoxText">Ich bin mindestens 13 Jahre alt.</string>
+
+
+
+    <string name="channel_Name">Vertretungen</string>
+    <string name="channel_Desc">Über diesen Kanal wird der Nutzer über Vertretungen in Kenntniss gesetzt</string>
+    <string name="receive_notifications">Benachrichtigungen:\nHier können Sie ihre Klassennummer,z.B. "9d","10a","Q1+2", "Q3+4", angeben damit Sie Benachrichtigungen für diese erhalten können:</string>
+    <string name="receive_notifications2">Wollen Sie von dieser App Benachrichtigungen erhalten?</string>
+    <string name="settingsName">Einstellungen</string>
+    <string name="feedbackName">Feedback/Bugreport</string>
+    <string name="abbreviationsName">Lehrerkürzel</string>
+    <string name="impressumName">Impressum</string>
+    <string name="EULAName">EULA und Datenschutz-Richtlinien</string>
+    <string name="title_activity_legal__notice">Impressum</string>
+    <string name="preference_file_key">org.konrad_gerlach.vertretungsplanapp.preference_file_key</string>
+    <string name="settings_file_key">org.konrad_gerlach.vertretungsplanapp.settings_file_key</string>
+    <string name="add_log">Bitte hängen Sie die Log-Datei an damit sie zum Entwickeln verwendet werden kann.</string>
+    <string name="defaultEmailText"></string>
+    <string name="unsupportedCharacterErrorToast">URL (maximal 40 Zeichen), Passwort oder Benutzername sind entweder zu lang (jeweils maximal 20 Zeichen), eines der Felder enthält nicht unterstütze Zeichen, oder Sie haben eines der Felder leer gelassen.</string>
+    <string name ="legalQuote">
+    Zur außergerichtlichen Beilegung von verbraucherrechtlichen Streitigkeiten hat die Europäische Union eine Online-Plattform (“OS-Plattform”) initiiert: <a href="http://ec.europa.eu/consumers/odr/">http://ec.europa.eu/consumers/odr/</a>\n
+        Zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle sind wir nicht verpflichtet und nicht bereit.
+    </string>
+    <string name="contactEmail">konrad.gerlach_dev@gmx.de</string>
+    <string name="About">Kontakt Informationen:\nkonrad.gerlach_dev@gmx.de\nSie können hierfür die Feedback/Bugreport Funktion der App nutzen. Website: <a href="https://vertretungsplanapp.jimdofree.com">https://vertretungsplanapp.jimdofree.com/</a></string>
+    <string name="NOTICE">NOTICE: uses Material Design icons by Google <a href="https://github.com/google/material-design-icons">https://github.com/google/material-design-icons</a></string>
+</resources>

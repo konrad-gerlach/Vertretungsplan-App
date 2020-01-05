@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2019 Konrad Gerlach
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.konrad_gerlach.vertretungsplanapp.VPLLogin"
+    >
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar1">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/LastUpdated_TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="" />
+
+                <GridLayout
+                    android:id="@+id/Grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Spinner
+                        android:id="@+id/week_spinner"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_row="0"
+                        android:layout_column="0"
+                        android:layout_margin="10dp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <Spinner
+                        android:id="@+id/day_spinner"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_row="0"
+                        android:layout_column="1"
+                        android:layout_margin="10dp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <Spinner
+                        android:id="@+id/group_spinner"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:layout_row="0"
+                        android:layout_column="2"
+                        android:layout_margin="10dp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+                </GridLayout>
+
+                <TextView
+                    android:id="@+id/date_TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+                <TextView
+                    android:id="@+id/message_TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <TableLayout
+                    android:id="@+id/Table"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:visibility="gone">
+
+                    <TableRow>
+
+                        <TextView
+                            android:layout_marginEnd="10dp"
+                            android:text="Klasse"></TextView>
+
+                        <TextView
+                            android:layout_marginEnd="10dp"
+                            android:text="Datum"></TextView>
+
+                        <TextView
+                            android:layout_marginEnd="10dp"
+                            android:text="Stunde"></TextView>
+
+                        <TextView
+                            android:layout_marginEnd="10dp"
+                            android:text="Vertreter"></TextView>
+
+                        <TextView
+                            android:layout_marginEnd="10dp"
+                            android:text="Fach"></TextView>
+
+                        <TextView
+                            android:layout_marginEnd="10dp"
+                            android:text="Raum"></TextView>
+
+                        <TextView
+                            android:layout_marginEnd="10dp"
+                            android:text="Vertretungs\n-Text"></TextView>
+                    </TableRow>
+
+                </TableLayout>
+
+                <TextView
+                    android:id="@+id/validFrom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:visibility="gone"/>
+
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+    </ScrollView>
+
+
+
+
+</RelativeLayout>
