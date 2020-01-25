@@ -267,7 +267,7 @@ public class Cryptography {
         chiffre.init(Cipher.DECRYPT_MODE, privateKeyEntry.getPrivateKey());
         CipherInputStream cipherInputStream = new CipherInputStream(new ByteArrayInputStream(encryptedMessage), chiffre);
 
-        //TODO untested
+        //TODO untested, works?
         byte[] buffer = new byte[20];
 
         ByteArrayOutputStream byteArrayGen = new ByteArrayOutputStream();

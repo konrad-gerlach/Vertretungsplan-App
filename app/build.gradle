@@ -22,8 +22,8 @@ android {
         applicationId "org.konrad_gerlach.vertretungsplanapp"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 4
-        versionName "Alpha 1.0.1"
+        versionCode 5
+        versionName "Release 1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -40,6 +40,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+
     implementation 'com.google.android.material:material:1.0.0-beta01'
     testImplementation 'junit:junit:4.12'
     implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta3"

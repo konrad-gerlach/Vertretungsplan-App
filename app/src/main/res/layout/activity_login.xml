@@ -49,7 +49,7 @@
         android:text="URL des Vertretungsplans"/>
     <EditText
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:inputType="text"
         android:id="@+id/website_address"
         android:layout_marginTop="5dp"
@@ -75,7 +75,7 @@
 
     <EditText
         android:layout_width="200dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:inputType="text"
         android:id="@+id/username_edit_text"
         android:layout_marginTop="5dp"
@@ -92,7 +92,7 @@
 
     <EditText
         android:layout_width="200dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:id="@+id/password_edit_text"
         android:inputType="textPassword"
         android:layout_marginTop="5dp"

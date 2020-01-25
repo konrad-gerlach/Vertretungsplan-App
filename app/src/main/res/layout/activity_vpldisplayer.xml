@@ -15,7 +15,7 @@
   ~ limitations under the License.
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -24,137 +24,155 @@
     >
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_default="wrap"
         android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
+
+        app:layout_constraintHeight_min="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipeRefresh"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="0dp"
+        app:layout_constraintHeight_default="wrap"
+        app:layout_constraintWidth_default="spread"
+        android:layout_height="0dp"
+        >
+
     <ScrollView
-        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar1">
+        android:layout_width="match_parent">
+
+
+        <!--app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"-->
 
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <TextView
+                android:id="@+id/LastUpdated_TextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="" />
 
-                <TextView
-                    android:id="@+id/LastUpdated_TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/Grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <GridLayout
-                    android:id="@+id/Grid"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <Spinner
-                        android:id="@+id/week_spinner"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_row="0"
-                        android:layout_column="0"
-                        android:layout_margin="10dp"
-                        android:textStyle="bold"
-                        android:visibility="gone" />
-
-                    <Spinner
-                        android:id="@+id/day_spinner"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_row="0"
-                        android:layout_column="1"
-                        android:layout_margin="10dp"
-                        android:textStyle="bold"
-                        android:visibility="gone" />
-
-                    <Spinner
-                        android:id="@+id/group_spinner"
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:layout_row="0"
-                        android:layout_column="2"
-                        android:layout_margin="10dp"
-                        android:textStyle="bold"
-                        android:visibility="gone" />
-                </GridLayout>
-
-                <TextView
-                    android:id="@+id/date_TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-                <TextView
-                    android:id="@+id/message_TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-                <TableLayout
-                    android:id="@+id/Table"
+                <Spinner
+                    android:id="@+id/week_spinner"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:visibility="gone">
-
-                    <TableRow>
-
-                        <TextView
-                            android:layout_marginEnd="10dp"
-                            android:text="Klasse"></TextView>
-
-                        <TextView
-                            android:layout_marginEnd="10dp"
-                            android:text="Datum"></TextView>
-
-                        <TextView
-                            android:layout_marginEnd="10dp"
-                            android:text="Stunde"></TextView>
-
-                        <TextView
-                            android:layout_marginEnd="10dp"
-                            android:text="Vertreter"></TextView>
-
-                        <TextView
-                            android:layout_marginEnd="10dp"
-                            android:text="Fach"></TextView>
-
-                        <TextView
-                            android:layout_marginEnd="10dp"
-                            android:text="Raum"></TextView>
-
-                        <TextView
-                            android:layout_marginEnd="10dp"
-                            android:text="Vertretungs\n-Text"></TextView>
-                    </TableRow>
-
-                </TableLayout>
-
-                <TextView
-                    android:id="@+id/validFrom"
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:visibility="gone"/>
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    app:layout_constraintStart_toEndOf="@+id/week_spinner"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/day_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <Spinner
+                    app:layout_constraintStart_toEndOf="@+id/day_spinner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/group_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/date_TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+            <TextView
+                android:id="@+id/message_TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <TableLayout
+                android:id="@+id/Table"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_marginEnd="10dp"
+                        android:text="Klasse"></TextView>
+
+                    <TextView
+                        android:layout_marginEnd="10dp"
+                        android:text="Datum"></TextView>
+
+                    <TextView
+                        android:layout_marginEnd="10dp"
+                        android:text="Stunde"></TextView>
+
+                    <TextView
+                        android:layout_marginEnd="10dp"
+                        android:text="Vertreter"></TextView>
+
+                    <TextView
+                        android:layout_marginEnd="10dp"
+                        android:text="Fach"></TextView>
+
+                    <TextView
+                        android:layout_marginEnd="10dp"
+                        android:text="Raum"></TextView>
+
+                    <TextView
+                        android:layout_marginEnd="10dp"
+                        android:text="Vertretungs\n-Text"></TextView>
+                </TableRow>
+
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/validFrom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:visibility="gone"/>
 
 
-            </LinearLayout>
-
-        </HorizontalScrollView>
-
-
-    </ScrollView>
+        </LinearLayout>
+    </HorizontalScrollView>
 
 
 
+</ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-</RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,8 +17,8 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.konrad_gerlach.vertretungsplanapp"
-    android:versionCode ="4"
-    android:versionName= "Alpha 1.0.1">
+    android:versionCode ="5"
+    android:versionName= "Release 1.0.0">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -35,19 +35,23 @@
         android:theme="@style/RedTheme">
         <activity
             android:name=".Main"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:screenOrientation="sensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".VPLDisplayer" />
+        <activity android:name=".VPLDisplayer"
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name=".VPLLogin"
-            android:noHistory="true"/>
+            android:noHistory="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Settings"
-            android:noHistory="true" />
+            android:noHistory="true"
+            android:screenOrientation="sensor"/>
         <!-- Declaring broadcast receiver for BOOT_COMPLETED event. -->
         <receiver
             android:name=".BootReceiver"
@@ -60,8 +64,10 @@
         <service android:name=".NotificationJobService"
             android:permission="android.permission.BIND_JOB_SERVICE"
             android:exported="false"/>
-        <activity android:name=".EULA" />
-        <activity android:name=".Teacher_Abbreviation_Editor" />
+        <activity android:name=".EULA"
+            android:screenOrientation="sensor"/>
+        <activity android:name=".Teacher_Abbreviation_Editor"
+            android:screenOrientation="locked"/>
 
         <service
             android:name=".NotificationService"
@@ -77,7 +83,8 @@
 
         <activity
             android:name=".Legal_Notice"
-            android:label="@string/title_activity_legal__notice"></activity>
+            android:label="@string/title_activity_legal__notice"
+            android:screenOrientation="sensor"></activity>
     </application>
 
 </manifest>

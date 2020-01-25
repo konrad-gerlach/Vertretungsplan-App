@@ -38,4 +38,9 @@
         android:id="@+id/EULA1"
         android:title="@string/EULAName"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/menu_refresh"
+        app:showAsAction="never"
+        android:title="aktualisieren"/>
+
 </menu>

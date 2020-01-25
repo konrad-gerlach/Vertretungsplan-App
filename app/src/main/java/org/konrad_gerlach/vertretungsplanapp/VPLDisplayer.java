@@ -25,6 +25,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -69,64 +71,37 @@ public class VPLDisplayer extends AppCompatActivity implements AdapterView.OnIte
 
 
 
+        //called when the user uses a swipe to refresh screen, updates VPL information displayed
+        SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.swipeRefresh);
+        swipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        Main.log("Info","Swipe refresh initiated",VPLDisplayer.class);
+                        refreshVPL();
+                    }
+                }
+        );
+
+
+
 
         Main.log("Info","Launched",this.getClass());
         //starts internet connection to
         if(this.getIntent().getExtras().get("Action").equals("update")&&isNetworkAvailable())
         {
-            Context context = getApplicationContext();
-            CharSequence text = "Aktualisierung läuft ...";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context,text,duration);
-            toast.show();
-            errorHandler =new Handler(Looper.getMainLooper())
-            {
-                @Override
-                public void handleMessage(Message inputMessage) {
-                    if(receivedErrors<1) {
-                        receivedErrors++;
-                        String errorMessage;
-                        switch (inputMessage.what) {
-                            case 404:
-                                errorMessage = "Es ist momentan kein Vertretungsplan online verfügbar.";
-                                break;
-                            case 401:
-                                errorMessage = "Die Anmeldedaten sind inkorrekt. Bitte geben Sie diese erneut ein";
-                                break;
-                            case -1:
-                                errorMessage = "Ein unbekannter Fehler ist bei der Verbindung zur Website erfolgt";
-                                break;
-                            case -2:
-                                errorMessage="Vertretungsplan konnte nicht geladen werden";
-                                break;
-                            default:
-                                errorMessage = "Ein unbekannter Fehler ist bei der Verbindung zur Website erfolgt";
-                                break;
-                        }
-                        displayError(errorMessage, (Context) inputMessage.obj);
-                    }
-
-                }
-            };
-            ConnectionTaskInput Input = new ConnectionTaskInput(this,"online", mainInstance.saveFile);
-            showVPLEventInitiator initiator = new showVPLEventInitiator();
-            showVPLEventListener listener = new showVPLEventListener(this,null,true,this.getApplicationContext());
-            initiator.addEventListener(listener);
-            UpdateErrorInitiator errorInitiator = new UpdateErrorInitiator();
-            UpdateErrorListener errorListener = new UpdateErrorListener(this);
-            errorInitiator.addEventListener(errorListener);
-            Input.setErrorInitiator(errorInitiator);
-            Input.setInitiator(initiator);
-            VPLConnectionTask runningVPLConnectionTask = new VPLConnectionTask();
-            runningVPLConnectionTask.execute(Input, null, new ConnectionTaskInput(this,"online", mainInstance.saveFile));
+            swipeRefreshLayout.setRefreshing(true);
+            refreshVPL();
         }
         else
         {
-            Context context = getApplicationContext();
+            swipeRefreshLayout.setRefreshing(true);
+            /*Context context = getApplicationContext();
             CharSequence text = "Läd Vertretungsplan ...";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context,text,duration);
-            toast.show();
+            toast.show();*/
+
             //returns to login screen if any errors occur during loading
             if(readFromSaveFile(true, Main.saveFile,this)==null)
             {
@@ -141,6 +116,55 @@ public class VPLDisplayer extends AppCompatActivity implements AdapterView.OnIte
             }
         }
 
+
+    }
+    public void refreshVPL()
+    {
+        /*Context context = getApplicationContext();
+        CharSequence text = "Aktualisierung läuft ...";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context,text,duration);
+        toast.show();*/
+        errorHandler =new Handler(Looper.getMainLooper())
+        {
+            @Override
+            public void handleMessage(Message inputMessage) {
+                if(receivedErrors<1) {
+                    receivedErrors++;
+                    String errorMessage;
+                    switch (inputMessage.what) {
+                        case 404:
+                            errorMessage = "Es ist momentan kein Vertretungsplan online verfügbar.";
+                            break;
+                        case 401:
+                            errorMessage = "Die Anmeldedaten sind inkorrekt. Bitte geben Sie diese erneut ein";
+                            break;
+                        case -1:
+                            errorMessage = "Ein unbekannter Fehler ist bei der Verbindung zur Website erfolgt";
+                            break;
+                        case -2:
+                            errorMessage="Vertretungsplan konnte nicht geladen werden";
+                            break;
+                        default:
+                            errorMessage = "Ein unbekannter Fehler ist bei der Verbindung zur Website erfolgt";
+                            break;
+                    }
+                    displayError(errorMessage, (Context) inputMessage.obj);
+                }
+
+            }
+        };
+        ConnectionTaskInput Input = new ConnectionTaskInput(this,"online", mainInstance.saveFile);
+        showVPLEventInitiator initiator = new showVPLEventInitiator();
+        showVPLEventListener listener = new showVPLEventListener(this,null,true,this.getApplicationContext());
+        initiator.addEventListener(listener);
+        UpdateErrorInitiator errorInitiator = new UpdateErrorInitiator();
+        UpdateErrorListener errorListener = new UpdateErrorListener(this);
+        errorInitiator.addEventListener(errorListener);
+        Input.setErrorInitiator(errorInitiator);
+        Input.setInitiator(initiator);
+        VPLConnectionTask runningVPLConnectionTask = new VPLConnectionTask();
+        runningVPLConnectionTask.execute(Input, null, new ConnectionTaskInput(this,"online", mainInstance.saveFile));
 
     }
     public void updateSharedPref()
@@ -183,10 +207,16 @@ public class VPLDisplayer extends AppCompatActivity implements AdapterView.OnIte
         else if(item.getItemId()==R.id.EULA1)
         {
             launchEULA();
+        }else if(item.getItemId()==R.id.menu_refresh)
+        {
+            Main.log("Info","manual refresh initiated",VPLDisplayer.class);
+            //called when the user uses a swipe to refresh screen, updates VPL information displayed
+            SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.swipeRefresh);
+            swipeRefreshLayout.setRefreshing(true);
+            refreshVPL();
         }
         return super.onOptionsItemSelected(item);
     }
-
     /**
      * initializes the displaying of the VPL by loading all the relevant data from the respective save Files and displaying iz
      */
@@ -499,6 +529,8 @@ public class VPLDisplayer extends AppCompatActivity implements AdapterView.OnIte
             if (groupNames.size() > 0) {
                 selectedGroup = groupNames.get(0).toString();
             }
+            SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.swipeRefresh);
+            swipeRefreshLayout.setRefreshing(false);
             updateDisplay();
         }
         return weeks;
@@ -658,15 +690,8 @@ public class VPLDisplayer extends AppCompatActivity implements AdapterView.OnIte
                         lesson.setLayoutParams(layoutParams);
                         row.addView(lesson);
                         TextView Substitute = new TextView(this);
-                        Substitute.setText(currentLine.getSubstitute());
-                        //replaces the abbreviation of the teachers name vounc on the online VPL with their real name
-                        for(Teacher_Abbreviations_Storage abbr :abbreviations)
-                        {
-                            if(currentLine.getSubstitute().equals(abbr.getShortHand()))
-                            {
-                                Substitute.setText(abbr.getName());
-                            }
-                        }
+                        Substitute.setText(lookUpTeacherAbbr(currentLine.getSubstitute()));
+
                         Substitute.setLayoutParams(layoutParams);
                         row.addView(Substitute);
                         TextView replacementSubject = new TextView(this);
@@ -764,7 +789,18 @@ public class VPLDisplayer extends AppCompatActivity implements AdapterView.OnIte
         intent.putExtra("Action", "Login");
         startActivity(intent);
     }
-
+    public static String lookUpTeacherAbbr(String abbreviation)
+    {
+        //replaces the abbreviation of the teachers name found on the online VPL with their real name
+        for(Teacher_Abbreviations_Storage abbr :abbreviations)
+        {
+            if(abbreviation.equals(abbr.getShortHand()))
+            {
+                return abbr.getName();
+            }
+        }
+        return abbreviation;
+    }
 
 
 }

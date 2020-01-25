@@ -15,6 +15,7 @@ package org.konrad_gerlach.vertretungsplanapp;/*
  */
 
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -40,6 +41,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 public class NotificationCore {
+    boolean firstNotification=true;
     private int summaryId=0;
     private int notificationId =1;
     private String className ="";
@@ -52,12 +54,12 @@ public class NotificationCore {
         Calendar now;
         //the day for which to display notifications; if the current time is later than 18:00, then it will display notifications for the next day
         displayForDate= Calendar.getInstance();
+
         if((now=Calendar.getInstance()).get(Calendar.HOUR_OF_DAY)>=18)
         {
             designatedForNextDay=true;
             displayForDate.add(Calendar.DAY_OF_YEAR,1);
         }
-
 
         boolean credentialsReadSuccess = false;
         boolean receiveNotifications=false;
@@ -103,6 +105,13 @@ public class NotificationCore {
     public void goOn(Context context)
     {
         Main.log("Info","going on",NotificationCore.class);
+        File abbreviationsFile = new File(context.getFilesDir(), Main.ABBREVIATIONS_FILE_NAME);
+        try {
+            Main.loadTeachersAbbreviations(abbreviationsFile,context);
+        } catch (IOException e) {
+            Main.log("Error","load abbreviations failed "+e.toString(),NotificationCore.class);
+        }
+
         //gets the notifications already shown for the displayForDate day to avoid duplicates
         File shownNotificationsFile = new File(context.getFilesDir(),Main.SHOWN_NOTIFICATIONS_FILE_NAME);
         ArrayList<String> shownNotifications = loadShownNotifications(shownNotificationsFile,context);
@@ -166,13 +175,15 @@ public class NotificationCore {
 
                                     //.setGroup(Main.NOTIFICATION_GROUP)
                                     //.setSortKey("a")
-
-
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-                                mBuilder
-                                        .setGroup(Main.NOTIFICATION_GROUP)
-                                        .setSortKey("a");
+                                mBuilder.setGroup(Main.NOTIFICATION_GROUP);
+                            }if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                            {
+                                mBuilder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY);
+                            }else{
+                                mBuilder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_ALL);
                             }
+
                             //ensures that notification has not already been displayed for this displayForDate day
                             boolean notificationPreviouslyDisplayed=false;
                             for(String previousNotification:shownNotifications)
@@ -184,7 +195,7 @@ public class NotificationCore {
 
                             if(!notificationPreviouslyDisplayed) {
                                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-
+                                createSummary(context);
                                 // notificationId is a unique int for each notification that you must define
                                 notificationManager.notify("VPLMessage", notificationId, mBuilder.build());
                                 shownNotifications.add(day.getMessage());
@@ -194,43 +205,50 @@ public class NotificationCore {
                         for (VPLLine line : day.getLines()) {
                             if (line.getGroup().contains(className) || line.getGroup().equals("") || line.getGroup().equals(" ")) {
                                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, Main.MAIN_CHANNEL_ID);
-                                String substitutionType=line.getSubstitute();
+                                String substitutionTypeShort=line.getSubstitute();
+                                String substitutionTypeLong=line.getSubstitute();
                                 if(line.getSubstitute().trim().equals("+"))
                                 {
-                                    substitutionType="Entfall";
+                                    substitutionTypeShort="Entfall "+line.getLessons()+" Std. " + line.getReplacementSubject();
+                                    substitutionTypeLong="eigenverantworliches Arbeiten";
                                 }
                                 else
                                 {
-                                    substitutionType="Vertr. bei "+line.getSubstitute();
+                                    substitutionTypeShort="Vertr. bei "+line.getSubstitute()+" "+line.getLessons()+" Std. " + line.getReplacementSubject();
+                                    substitutionTypeLong="Vertretung bei "+VPLDisplayer.lookUpTeacherAbbr(line.getSubstitute());
                                 }
-                                String contentTitle=substitutionType+(designatedForNextDay ? " morgen ":" heute ");
+                                String contentTitle=substitutionTypeShort+(designatedForNextDay ? " morgen ":" heute ");
                                 mBuilder.setSmallIcon(R.drawable.notification_icon)
                                         .setContentTitle(contentTitle)
                                         .setStyle(new NotificationCompat.BigTextStyle()
-                                                .bigText(line.getLessons()+" Std. " + line.getReplacementSubject()+" in "+line.getRoom()+System.getProperty("line.separator")+(line.getComment().equals("")||line.getComment()==null?"":"Kommentar:"+line.getComment())))
+                                                .bigText(substitutionTypeLong+" in der "+line.getLessons()+" Std. " + line.getReplacementSubject()+" in "+line.getRoom()+System.getProperty("line.separator")+(line.getComment().equals("")||line.getComment()==null?"":"Kommentar:"+line.getComment())))
                                         .setTimeoutAfter(14400000);
                                         //.setGroup(Main.NOTIFICATION_GROUP)
                                         //.setSortKey("b")
 
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-                                    mBuilder
-                                            .setGroup(Main.NOTIFICATION_GROUP)
-                                            .setSortKey("b");
+                                    mBuilder.setGroup(Main.NOTIFICATION_GROUP);
+                                }if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                                {
+                                    mBuilder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY);
+                                }else{
+                                    mBuilder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_ALL);
                                 }
                                 //ensures that notification has not already been displayed for this displayForDate day
                                 boolean notificationPreviouslyDisplayed=false;
                                 for(String previousNotification:shownNotifications)
                                 {
-                                    if(previousNotification.trim().equals((substitutionType+line.getLessons()+" Std. " + line.getReplacementSubject()+" in "+line.getRoom()+" "+line.getComment()).trim()))
+                                    if(previousNotification.trim().equals((substitutionTypeShort+line.getLessons()+" Std. " + line.getReplacementSubject()+" in "+line.getRoom()+" "+line.getComment()).trim()))
                                         notificationPreviouslyDisplayed=true;
 
                                 }
 
                                 if(!notificationPreviouslyDisplayed) {
+                                    createSummary(context);
                                     NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
                                     // notificationId is a unique int for each notification that you must define
                                     notificationManager.notify("VPLLine", notificationId, mBuilder.build());
-                                    shownNotifications.add(substitutionType+line.getLessons()+" Std. " + line.getReplacementSubject()+" in "+line.getRoom()+" "+line.getComment());
+                                    shownNotifications.add(substitutionTypeShort+line.getLessons()+" Std. " + line.getReplacementSubject()+" in "+line.getRoom()+" "+line.getComment().trim());
                                     notificationId++;
                                 }
                             }
@@ -246,6 +264,23 @@ public class NotificationCore {
         writeShownNotifications(shownNotifications,shownNotificationsFile,context);
 
 
+    }
+    private void createSummary(Context context)
+    {
+        if(firstNotification&&Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+        {
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, Main.MAIN_CHANNEL_ID);
+             mBuilder.setSmallIcon(R.drawable.notification_icon)
+                     .setContentTitle("Vetretungsplan")
+                     .setGroup(Main.NOTIFICATION_GROUP)
+                     .setGroupSummary(true)
+                .setStyle(new NotificationCompat.InboxStyle().addLine("Fehler"))
+                .setTimeoutAfter(14400000);
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+            notificationManager.notify("VPLSummary", summaryId, mBuilder.build());
+        }
+
+        firstNotification=false;
     }
     private ArrayList<String> loadShownNotifications(File shownNotificationFile,Context context)
     {

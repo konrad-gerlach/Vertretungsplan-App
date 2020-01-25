@@ -35,8 +35,6 @@ import android.app.NotificationManager;
 import android.content.SharedPreferences;
 
 import org.konrad_gerlach.vertretungsplanapp.security.Cryptography;
-//TODO increase screen element sizes
-//TODO ensure text contrast is high enough
 //TODO show notification reception dialog after first logging in
 public class Main extends AppCompatActivity {
     //constants
@@ -163,7 +161,7 @@ public class Main extends AppCompatActivity {
                 credentialsReadSuccess=true;
                 saveCredentials=true;
             }
-            loadTeachersAbbreviations();
+            loadTeachersAbbreviations(abbreviationsFile,this);
         } catch (IOException e) {
             log("Error", "Error while interacting with a save File", this.getClass());
         }
@@ -179,11 +177,12 @@ public class Main extends AppCompatActivity {
 
     }
     //loads the decrypted Teachers Abbreviations
-    private void loadTeachersAbbreviations()
+    public static void loadTeachersAbbreviations(File abbreviationsFile,Context context)
             throws IOException
     {
+        log("Info","Loading teachers abbreviations",Main.class);
         //loads the teachers abbreviations from the save File
-        java.io.FileReader R4 = new java.io.FileReader(Main.abbreviationsFile);
+        java.io.FileReader R4 = new java.io.FileReader(abbreviationsFile);
         java.io.BufferedReader BR4 = new java.io.BufferedReader(R4);
         String encryptedContent1="";
         String readLine1 ="";
@@ -191,8 +190,8 @@ public class Main extends AppCompatActivity {
         {
             encryptedContent1=encryptedContent1.concat(readLine1);
         }
-        String decryptedContent =Cryptography.decrypt(TA_INIT_VECTOR,encryptedContent1,this,TA_KEY,TA_ENCRYPT_SUCCESS_KEY,Main.TA_KEY_23_AES,Main.TA_KEY_23_RSA);
-        if(decryptedContent!="") {
+        String decryptedContent =Cryptography.decrypt(TA_INIT_VECTOR,encryptedContent1,context,TA_KEY,TA_ENCRYPT_SUCCESS_KEY,Main.TA_KEY_23_AES,Main.TA_KEY_23_RSA);
+        if(!decryptedContent.equals("")) {
             Scanner abbrScanner = new Scanner(decryptedContent);
             abbrScanner.useDelimiter("<delimiter>");
             VPLDisplayer.abbreviations.clear();
@@ -203,7 +202,7 @@ public class Main extends AppCompatActivity {
                     constructable.setShortHand(abbrScanner.next());
                     VPLDisplayer.abbreviations.add(constructable);
                 } else {
-                    log("Error", "Error while interacting with abbr save File", this.getClass());
+                    log("Error", "Error while interacting with abbr save File", Main.class);
                 }
             }
         }
@@ -390,15 +389,15 @@ public class Main extends AppCompatActivity {
 
             Calendar now = Calendar.getInstance();
             String date = Integer.toString(now.get(Calendar.DAY_OF_MONTH)) + "/" + Integer.toString(now.get(Calendar.MONTH) + 1) + "/" + Integer.toString(now.get(Calendar.YEAR)) + "/" + Integer.toString(now.get(Calendar.HOUR_OF_DAY)) + "/" + Integer.toString(now.get(Calendar.MINUTE)) + "/" + Integer.toString(now.get(Calendar.SECOND)) + "/" + Integer.toString(now.get(Calendar.MILLISECOND)) + "    ";
-            //clears log if size too large (>=50kB)
-            if(LogFile.length()>=50000)
+            //clears log if size too large (>=5MB)
+            if(LogFile.length()>=5000000)
             {
                 try {
                     //clears credentialsSaveFile
                     PrintWriter pw1 = new PrintWriter(LogFile);
                     pw1.close();
 
-                    Entry firstEntry = new Entry(date, Main.class.toString(),"Info","Reset Log");
+                    Entry firstEntry = new Entry(date, Main.class.toString(),"Info","Reset Log; eula has been accepted:" + EULAAccepted);
                     writeLog(firstEntry);
                     if(EULAAccepted) {
                         Entry APIVersion = new Entry(date, Main.class.toString(), "Info", "Device SDK version" + Build.VERSION.SDK_INT);
